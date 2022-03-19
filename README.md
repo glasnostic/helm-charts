@@ -3,7 +3,7 @@
 Add the Glasnostic repository to Helm:
 
 ```sh
-helm repo add glasnostic https://helm.glasnostic.io/helm-charts
+helm repo add glasnostic https://glasnostic.github.io/helm-charts/
 ```
 
 ### Glasnostic Kubernetes data plane
