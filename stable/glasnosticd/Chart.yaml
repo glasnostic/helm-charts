@@ -11,7 +11,7 @@ sources:
   - https://github.com/glasnostic/helm-charts
 maintainers:
   - email: christoph@glasnostic.com
-    name: Christoph Kassen
+    name: ckassen
 keywords:
   - glasnostic
   - kubernetes
