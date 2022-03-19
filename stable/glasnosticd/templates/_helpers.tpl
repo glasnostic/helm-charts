@@ -62,5 +62,3 @@ caCert: {{ $ca.Cert | b64enc }}
 clientCert: {{ $cert.Cert | b64enc }}
 clientKey: {{ $cert.Key | b64enc }}
 {{- end -}}
-
-glasnosticd.glasnostic-system.svc
