@@ -15,3 +15,5 @@ maintainers:
     email: ckassen@users.noreply.github.com
 keywords:
   - glasnostic
+  - kubernetes
+  - helm
