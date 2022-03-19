@@ -10,9 +10,8 @@ icon: https://raw.githubusercontent.com/glasnostic/helm-charts/master/docs/logo/
 sources:
   - https://github.com/glasnostic/helm-charts
 maintainers:
-  - name: Christoph Kassen
-    url: https://github.com/ckassen
-    email: ckassen@users.noreply.github.com
+  - email: christoph@glasnostic.com
+    name: Christoph Kassen
 keywords:
   - glasnostic
   - kubernetes
