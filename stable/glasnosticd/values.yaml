@@ -1,0 +1,15 @@
+# Default values for glasnosticd.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+networkKey: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+containerImage: "public.ecr.aws/glasnostic/glasnosticd"
+containerImageTag: "v0.99.8"
+sidecarImage: "public.ecr.aws/glasnostic/sidecar"
+sidecarImageTag: "v0.99.8"
+
+namespace: "glasnostic-system"
