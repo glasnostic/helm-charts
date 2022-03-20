@@ -1,10 +1,23 @@
 # Default values for glasnosticd.
 # This is a YAML-formatted file.
 
-networkKey: ""
+networkKey: "abcd"
 
 nameOverride: ""
 fullnameOverride: ""
+
+image:
+  repository: public.ecr.aws/glasnostic/glasnosticd
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+ # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  Name: glasnosticd
 
 containerImage: "public.ecr.aws/glasnostic/glasnosticd"
 containerImageTag: "v0.99.8"

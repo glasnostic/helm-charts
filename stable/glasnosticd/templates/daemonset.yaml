@@ -4,17 +4,15 @@ metadata:
   name: glasnosticd
   namespace: glasnostic-system
   labels:
-    app: glasnosticd
-    {{- include "glasnosticd.labels" . | nindent 4 }}
+    app: {{ template "glasnosticd.name" . }}
 spec:
   selector:
     matchLabels:
-      app: glasnosticd
+      app: {{ template "glasnosticd.name" . }}
   template:
     metadata:
       labels:
-        app: glasnosticd
-        {{- include "glasnosticd.labels" . | nindent 4 }}
+        app: {{ template "glasnosticd.name" . }}
     spec:
       serviceAccountName: glasnosticd
       volumes:
