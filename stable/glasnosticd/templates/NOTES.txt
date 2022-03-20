@@ -1,1 +1,0 @@
-Glasnostic installed! Head to https://app.glasnostic.com to view your infrastructure.
