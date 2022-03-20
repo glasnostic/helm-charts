@@ -4,5 +4,5 @@ target-branch: main
 chart-dirs:
   - stable
 chart-repos:
-  - glasnostic=https://glasnostic.github.com/helm-charts
+  - glasnostic=https://glasnostic.github.io/helm-charts/
 helm-extra-args: --timeout 600s
