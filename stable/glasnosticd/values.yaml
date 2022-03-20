@@ -1,7 +1,7 @@
 # Default values for glasnosticd.
 # This is a YAML-formatted file.
 
-networkKey: "abcd"
+networkKey: ""
 
 nameOverride: ""
 fullnameOverride: ""
