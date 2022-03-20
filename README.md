@@ -38,7 +38,7 @@ helm search repo glasnostic -l
 Install specific helm chart
 
 ```sh
-helm install glasnosticd stable/glasnosticd
+helm install glasnosticd glasnostic/glasnosticd
 helm status glasnosticd
 ```
 
