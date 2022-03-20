@@ -19,13 +19,6 @@ Glasnostic Platform Helm Charts on a [Kubernetes](https://kubernetes.io) cluster
 - Kubernetes 1.16+
 - Helm 3.0+
 
-### Installing [Helm](https://helm.sh)
-
-```sh
-curl -L https://git.io/get_helm.sh | bash
-helm init
-```
-
 ## Installing Glasnostic Helm Repository
 
 Add the Glasnostic repository to Helm:
