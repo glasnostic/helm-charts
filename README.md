@@ -3,6 +3,7 @@
 # Glasnostic Charts
 
 [![License][license-img]][license]
+
 [license-img]: https://img.shields.io/badge/License-Apache%202.0-blue.svg
 [license]: https://github.com/glasnostic/helm-charts/blob/master/LICENSE
 
@@ -11,7 +12,7 @@ Glasnostic Platform Helm Charts on a [Kubernetes](https://kubernetes.io) cluster
 
 ## Charts
 
-- [glasnosticd](stable/glasnosticd): Glasnostic Kubernets Data Plane Helm chart
+- [glasnosticd](https://github.com/glasnostic/helm-charts/tree/main/stable/glasnosticd): Glasnostic Kubernets Data Plane Helm chart
 
 ## Prerequisites
 
