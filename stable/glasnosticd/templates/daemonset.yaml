@@ -21,8 +21,8 @@ spec:
           secretName: injection-secret
       containers:
       - name: glasnosticd
-        image: "{{ .Values.containerImage }}:{{ .Values.containerImageTag }}"
-        imagePullPolicy: IfNotPresent
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         volumeMounts:
         - mountPath: "/etc/glasnostic"
           name: injection-secret

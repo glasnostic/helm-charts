@@ -1,7 +1,9 @@
 # Default values for glasnosticd.
 # This is a YAML-formatted file.
 
-networkKey: ""
+# Glasnostic Network ID - The network ID of the network to use for the dataplane.
+# Go to https://app.glasnostic.com/ to see the network ID.
+#networkKey: ""
 
 nameOverride: ""
 fullnameOverride: ""
@@ -9,6 +11,7 @@ fullnameOverride: ""
 image:
   repository: public.ecr.aws/glasnostic/glasnosticd
   pullPolicy: IfNotPresent
+  tag: "v0.99.8"
 
 serviceAccount:
  # Specifies whether a service account should be created
@@ -19,8 +22,6 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   Name: glasnosticd
 
-containerImage: "public.ecr.aws/glasnostic/glasnosticd"
-containerImageTag: "v0.99.8"
 sidecarImage: "public.ecr.aws/glasnostic/sidecar"
 sidecarImageTag: "v0.99.8"
 
