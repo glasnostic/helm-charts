@@ -12,5 +12,5 @@ metadata:
   name: glasnostic-config
   namespace: glasnostic-system
 data:
-  NETWORK_KEY: {{ .Values.networkKey }}
+  NETWORK_KEY: {{ required "You must set a valid Glasnostic Network ID API key" .Values.networkKey | quote }}
   IGNORE_PASSTHROUGH_REPORT: "true"
