@@ -19,7 +19,7 @@ webhooks:
   clientConfig:
     caBundle: {{ $tls.caCert }}
     service:
-      namespace: glasnostic-system
+      namespace: {{ .Values.namespace }}
       name: glasnosticd
       path: /inject
   failurePolicy: Fail
@@ -43,7 +43,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: injection-secret
-  namespace: glasnostic-system
+  namespace: {{ .Values.namespace }}
 type: kubernetes.io/tls
 data:
   ca.crt: {{ $tls.caCert }}

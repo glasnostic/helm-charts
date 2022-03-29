@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: glasnostic-system
+  name: {{ .Values.namespace }}
   labels:
     glasnostic: disable
 
@@ -10,7 +10,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: glasnostic-config
-  namespace: glasnostic-system
+  namespace: {{ .Values.namespace }}
 data:
   NETWORK_KEY: {{ required "You must set a valid Glasnostic Network ID API key" .Values.networkKey | quote }}
   IGNORE_PASSTHROUGH_REPORT: "true"

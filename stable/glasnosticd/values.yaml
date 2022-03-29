@@ -3,7 +3,7 @@
 
 # Glasnostic Network ID - The network ID of the network to use for the dataplane.
 # Go to https://app.glasnostic.com/ to see the network ID.
-# networkKey: ""
+networkKey: ""
 
 nameOverride: ""
 fullnameOverride: ""
