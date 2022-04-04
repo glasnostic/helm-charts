@@ -38,7 +38,9 @@ helm search repo glasnostic -l
 Install specific helm chart
 
 ```sh
-helm install glasnosticd glasnostic/glasnosticd
+helm install glasnosticd glasnostic/glasnosticd \
+    --set networkKey="myNetworkKey"
+    
 helm status glasnosticd
 ```
 
