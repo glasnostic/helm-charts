@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: glasnosticd
-  namespace: glasnostic-system
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ template "glasnosticd.name" . }}
 spec:

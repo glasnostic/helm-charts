@@ -18,7 +18,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: glasnosticd # ServiceAccount name
-    namespace: glasnostic-system
+    namespace: {{ .Values.namespace }}
 roleRef:
   kind: ClusterRole
   name: glasnosticd # rbac role definition name
