@@ -11,7 +11,7 @@ fullnameOverride: ""
 image:
   repository: public.ecr.aws/glasnostic/glasnosticd
   pullPolicy: IfNotPresent
-  tag: "v0.99.8"
+  tag: "v1.12.0"
 
 serviceAccount:
  # Specifies whether a service account should be created
@@ -23,6 +23,6 @@ serviceAccount:
   Name: glasnosticd
 
 sidecarImage: "public.ecr.aws/glasnostic/sidecar"
-sidecarImageTag: "v0.99.8"
+sidecarImageTag: "v1.12.0"
 
 namespace: "glasnostic-system"
