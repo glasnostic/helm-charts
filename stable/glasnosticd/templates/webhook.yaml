@@ -49,6 +49,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: {{ include "glasnostic.fullname" . }}-admission
+  namespace: {{ include "glasnostic.fullname" . }}-system
 type: kubernetes.io/tls
 data:
   ca.crt: {{ $tls.caCert }}
