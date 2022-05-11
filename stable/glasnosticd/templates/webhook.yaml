@@ -53,7 +53,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: kubernetes.io/tls
 data:
-  ca.crt: {{ $tls.caCert }}
   tls.crt: {{ $tls.clientCert }}
   tls.key: {{ $tls.clientKey }}
 {{- end }}

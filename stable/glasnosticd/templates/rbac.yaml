@@ -6,7 +6,6 @@ rules:
   - apiGroups: ["", "coordination.k8s.io"]
     resources: ["leases", "nodes", "pods", "services", "endpoints"]
     verbs: ["get", "list", "update", "delete", "create", "watch"]
-
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

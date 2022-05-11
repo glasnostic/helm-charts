@@ -14,4 +14,4 @@ name: glasnosticd
 sources:
 - https://github.com/glasnostic/helm-charts
 type: application
-version: 0.2.1
+version: 0.2.2

@@ -8,8 +8,6 @@ networkKey: ""
 # NodePort that Glasnostic will use. Change only when port is already in use.
 nodePort: 40753
 
-namespace: "glasnostic-system"
-
 image:
   repository: public.ecr.aws/glasnostic/glasnosticd
   pullPolicy: IfNotPresent
