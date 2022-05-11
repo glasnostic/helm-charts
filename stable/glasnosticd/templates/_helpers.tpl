@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "glasnostic.name" -}}
+{{- define "glasnosticd.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -46,7 +46,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "glasnostic.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "glasnostic.name" . }}
+app.kubernetes.io/name: {{ include "glasnosticd.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
