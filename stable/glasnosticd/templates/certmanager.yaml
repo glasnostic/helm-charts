@@ -38,9 +38,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ template "glasnosticd.fullname" . }}-admission
+  name: injection-secret
 spec:
-  secretName: {{ template "glasnosticd.fullname" . }}-admission
+  secretName: injection-secret
   duration: {{ .Values.certManager.admissionCert.duration | default "8760h0m0s" | quote }}
   issuerRef:
     {{- if .Values.certManager.issuerRef }}

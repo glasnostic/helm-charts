@@ -49,7 +49,7 @@ webhooks:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ include "glasnosticd.fullname" . }}-admission
+  name: injection-secret
   namespace: {{ .Release.Namespace }}
 type: kubernetes.io/tls
 data:

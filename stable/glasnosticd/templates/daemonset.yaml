@@ -27,9 +27,9 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-        - name: admission-secret
+        - name: injection-secret
           secret:
-            secretName: {{ include "glasnosticd.fullname" . }}-admission
+            secretName: injection-secret
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -67,7 +67,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - mountPath: "/etc/glasnostic"
-              name: admission-secret
+              name: injection-secret
               readOnly: true
       nodeSelector:
         {{- toYaml .Values.nodeSelector | nindent 8 }}
