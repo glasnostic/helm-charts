@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "glasnostic.fullname" -}}
+{{- define "glasnosticd.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -55,7 +55,7 @@ Create the name of the service account to use
 */}}
 {{- define "glasnostic.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "glasnostic.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "glasnosticd.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
@@ -65,10 +65,10 @@ Create the name of the service account to use
 Generate certificates for webhook
 */}}
 {{- define "glasnostic.gen-certs" -}}
-{{- $fullName := ( include "glasnostic.fullname" . ) -}}
-{{- $altNames := list ( printf "%s.%s" $fullName .Release.Namespace ) ( printf "%s.%s.svc" $fullName .Release.Namespace ) -}}
+{{- $fullName := ( include "glasnosticd.fullname" . ) -}}
+{{- $altNames := list ( printf "%s.%s" $fullName .Values.namespace ) ( printf "%s.%s.svc" $fullName .Values.namespace ) -}}
 {{- $ca := genCA "glasnostic-ca" 3650 -}}
-{{- $cert := genSignedCert ( include "glasnostic.fullname" . ) nil $altNames 3650 $ca -}}
+{{- $cert := genSignedCert ( include "glasnosticd.fullname" . ) nil $altNames 3650 $ca -}}
 caCert: {{ $ca.Cert | b64enc }}
 clientCert: {{ $cert.Cert | b64enc }}
 clientKey: {{ $cert.Key | b64enc }}

@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "glasnostic.fullname" . }}-lookup-server
+  name: lookup-server
+  namespace: {{ .Values.namespace }}
   labels:
     {{- include "glasnostic.labels" . | nindent 4 }}
 spec:
@@ -14,7 +15,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "glasnostic.fullname" . }}-glasnosticd
+  name: glasnosticd
+  namespace: {{ .Values.namespace }}
   labels:
     {{- include "glasnostic.labels" . | nindent 4 }}
 spec:

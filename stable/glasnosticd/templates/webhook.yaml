@@ -6,11 +6,12 @@ apiVersion: admissionregistration.k8s.io/v1beta1
 {{- end }}
 kind: MutatingWebhookConfiguration
 metadata:
-  name: {{ include "glasnostic.fullname" . }}-sidecar-injector
+  name: {{ include "glasnosticd.fullname" . }}-sidecar-injector
+  namespace: {{ .Values.namespace }}
   {{- if .Values.certManager.enabled }}
   annotations:
-    certmanager.k8s.io/inject-ca-from: {{ printf "%s/%s-admission" .Release.Namespace (include "glasnostic.fullname" .) | quote }}
-    cert-manager.io/inject-ca-from: {{ printf "%s/%s-admission" .Release.Namespace (include "glasnostic.fullname" .) | quote }}
+    certmanager.k8s.io/inject-ca-from: {{ printf "%s/%s-admission" .Values.namespace (include "glasnosticd.fullname" .) | quote }}
+    cert-manager.io/inject-ca-from: {{ printf "%s/%s-admission" .Values.namespace (include "glasnosticd.fullname" .) | quote }}
   {{- end }}
 webhooks:
 - name: sidecar-injector.glasnostic.com
@@ -25,8 +26,8 @@ webhooks:
     caBundle: {{ $tls.caCert }}
     {{- end }}
     service:
-      namespace: {{ .Release.Namespace }}
-      name: {{ include "glasnostic.fullname" . }}-glasnosticd
+      namespace: {{ .Values.namespace }}
+      name: glasnosticd
       path: /inject
   failurePolicy: Fail
   rules:
@@ -48,8 +49,8 @@ webhooks:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ include "glasnostic.fullname" . }}-admission
-  namespace: {{ include "glasnostic.fullname" . }}-system
+  name: {{ include "glasnosticd.fullname" . }}-admission
+  namespace: {{ .Values.namespace }}
 type: kubernetes.io/tls
 data:
   ca.crt: {{ $tls.caCert }}

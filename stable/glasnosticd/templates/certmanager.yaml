@@ -5,8 +5,8 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ template "glasnostic.fullname" . }}-self-signed-issuer
-  namespace: {{ .Release.Namespace }}
+  name: {{ template "glasnosticd.fullname" . }}-self-signed-issuer
+  namespace: {{ .Values.namespace }}
 spec:
   selfSigned: {}
 ---
@@ -14,13 +14,13 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ template "glasnostic.fullname" . }}-root-cert
-  namespace: {{ .Release.Namespace }}
+  name: {{ template "glasnosticd.fullname" . }}-root-cert
+  namespace: {{ .Values.namespace }}
 spec:
-  secretName: {{ template "glasnostic.fullname" . }}-root-cert
+  secretName: {{ template "glasnosticd.fullname" . }}-root-cert
   duration: {{ .Values.certManager.rootCert.duration | default "43800h0m0s" | quote }}
   issuerRef:
-    name: {{ template "glasnostic.fullname" . }}-self-signed-issuer
+    name: {{ template "glasnosticd.fullname" . }}-self-signed-issuer
   commonName: "ca.webhook.glasnostic"
   isCA: true
 ---
@@ -28,28 +28,28 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ template "glasnostic.fullname" . }}-root-issuer
+  name: {{ template "glasnosticd.fullname" . }}-root-issuer
 spec:
   ca:
-    secretName: {{ template "glasnostic.fullname" . }}-root-cert
+    secretName: {{ template "glasnosticd.fullname" . }}-root-cert
 {{- end }}
 ---
 # generate a server certificate for the apiservices to use
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ template "glasnostic.fullname" . }}-admission
+  name: {{ template "glasnosticd.fullname" . }}-admission
 spec:
-  secretName: {{ template "glasnostic.fullname" . }}-admission
+  secretName: {{ template "glasnosticd.fullname" . }}-admission
   duration: {{ .Values.certManager.admissionCert.duration | default "8760h0m0s" | quote }}
   issuerRef:
     {{- if .Values.certManager.issuerRef }}
     {{- toYaml .Values.certManager.issuerRef | nindent 4 }}
     {{- else }}
-    name: {{ template "glasnostic.fullname" . }}-root-issuer
+    name: {{ template "glasnosticd.fullname" . }}-root-issuer
     {{- end }}
   dnsNames:
-  - {{ template "glasnostic.fullname" . }}
-  - {{ template "glasnostic.fullname" . }}.{{ .Release.Namespace }}
-  - {{ template "glasnostic.fullname" . }}.{{ .Release.Namespace }}.svc
+  - {{ template "glasnosticd.fullname" . }}
+  - {{ template "glasnosticd.fullname" . }}.{{ .Values.namespace }}
+  - {{ template "glasnosticd.fullname" . }}.{{ .Values.namespace }}.svc
 {{- end -}}

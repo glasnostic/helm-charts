@@ -1,6 +1,7 @@
+#Create namespace via Helm to ensure injector does not interfere with the glasnosticd containers
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: {{ include "glasnostic.fullname" . }}-system
+  name: {{ .Values.namespace }}
   labels:
     glasnostic: disable

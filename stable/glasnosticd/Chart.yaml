@@ -10,8 +10,8 @@ keywords:
 maintainers:
 - email: christoph@glasnostic.com
   name: ckassen
-name: glasnostic
+name: glasnosticd
 sources:
 - https://github.com/glasnostic/helm-charts
 type: application
-version: 0.2.0
+version: 0.2.1
