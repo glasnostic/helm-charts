@@ -68,7 +68,7 @@ Generate certificates for webhook
 {{- $fullName := ( include "glasnosticd.fullname" . ) -}}
 {{- $altNames := list ( printf "%s.%s" $fullName .Release.Namespace ) ( printf "%s.%s.svc" $fullName .Release.Namespace ) -}}
 {{- $ca := genCA "glasnostic-ca" 3650 -}}
-{{- $cert := genSignedCert ( include "glasnosticd.fullname" . ) nil $altNames 3650 $ca -}}
+{{- $cert := genSignedCert $fullName nil $altNames 3650 $ca -}}
 caCert: {{ $ca.Cert | b64enc }}
 clientCert: {{ $cert.Cert | b64enc }}
 clientKey: {{ $cert.Key | b64enc }}

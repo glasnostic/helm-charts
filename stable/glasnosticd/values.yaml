@@ -26,7 +26,7 @@ certManager:
   # Use cert manager for webhook certs?
   enabled: false
   # issuerRef:
-  #   name: custom-ca
+  #   name: glasnostic-ca
   #   kind: ClusterIssuer
 
 imagePullSecrets: []
