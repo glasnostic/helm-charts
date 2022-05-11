@@ -6,7 +6,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: {{ template "glasnosticd.fullname" . }}-self-signed-issuer
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
 spec:
   selfSigned: {}
 ---
@@ -15,7 +15,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: {{ template "glasnosticd.fullname" . }}-root-cert
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
 spec:
   secretName: {{ template "glasnosticd.fullname" . }}-root-cert
   duration: {{ .Values.certManager.rootCert.duration | default "43800h0m0s" | quote }}
@@ -50,6 +50,6 @@ spec:
     {{- end }}
   dnsNames:
   - {{ template "glasnosticd.fullname" . }}
-  - {{ template "glasnosticd.fullname" . }}.{{ .Values.namespace }}
-  - {{ template "glasnosticd.fullname" . }}.{{ .Values.namespace }}.svc
+  - {{ template "glasnosticd.fullname" . }}.{{ .Release.Namespace }}
+  - {{ template "glasnosticd.fullname" . }}.{{ .Release.Namespace }}.svc
 {{- end -}}

@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "glasnostic.chart" -}}
+{{- define "glasnosticd.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "glasnostic.labels" -}}
-helm.sh/chart: {{ include "glasnostic.chart" . }}
-{{ include "glasnostic.selectorLabels" . }}
+{{- define "glasnosticd.labels" -}}
+helm.sh/chart: {{ include "glasnosticd.chart" . }}
+{{ include "glasnosticd.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,7 +45,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "glasnostic.selectorLabels" -}}
+{{- define "glasnosticd.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "glasnosticd.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -53,7 +53,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "glasnostic.serviceAccountName" -}}
+{{- define "glasnosticd.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
 {{- default (include "glasnosticd.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
@@ -64,9 +64,9 @@ Create the name of the service account to use
 {{/*
 Generate certificates for webhook
 */}}
-{{- define "glasnostic.gen-certs" -}}
+{{- define "glasnosticd.gen-certs" -}}
 {{- $fullName := ( include "glasnosticd.fullname" . ) -}}
-{{- $altNames := list ( printf "%s.%s" $fullName .Values.namespace ) ( printf "%s.%s.svc" $fullName .Values.namespace ) -}}
+{{- $altNames := list ( printf "%s.%s" $fullName .Release.Namespace ) ( printf "%s.%s.svc" $fullName .Release.Namespace ) -}}
 {{- $ca := genCA "glasnostic-ca" 3650 -}}
 {{- $cert := genSignedCert ( include "glasnosticd.fullname" . ) nil $altNames 3650 $ca -}}
 caCert: {{ $ca.Cert | b64enc }}
