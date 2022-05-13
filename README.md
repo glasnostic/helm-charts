@@ -35,10 +35,12 @@ Search all the repositories available
 helm search repo glasnostic -l
 ```
 
-Install specific helm chart
+Install specific helm chart. Make sure to create the `glasnostic-system` namespace before installing via Helm.
 
 ```sh
+kubectl create namespace glasnostic-system
 helm install glasnosticd glasnostic/glasnosticd \
+    -n glasnostic-system
     --set networkKey="myNetworkKey"
     
 helm status glasnosticd
@@ -51,3 +53,9 @@ To uninstall/delete the `glasnosticd` deployment:
 ```sh
 helm delete glasnosticd
 ```
+
+## Acknowledgements
+
+The following people have contributed to Glasnostic Helm Charts:
+
+- Maurice Faber (RedKubes)
