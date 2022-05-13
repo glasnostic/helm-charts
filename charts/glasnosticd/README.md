@@ -1,25 +1,9 @@
 # Glasnostic Kubernetes Data Plan Helm Chart
 
-[![License][license-img]][license]
-
-[license-img]: https://img.shields.io/badge/License-Apache%202.0-blue.svg
-[license]: https://github.com/glasnostic/helm-charts/blob/master/LICENSE
-
-Glasnostic Platform Helm Charts on a [Kubernetes](https://kubernetes.io) cluster using the
-[Helm](https://helm.sh) package manager.
-
 ## Prerequisites
 
 - Kubernetes 1.16+
 - Helm 3.0+
-
-## Installing Glasnostic Helm Repository
-
-Add the Glasnostic repository to Helm:
-
-```sh
-helm repo add glasnostic https://glasnostic.github.io/helm-charts/
-```
 
 ## Installing the Chart
 
@@ -47,9 +31,3 @@ To uninstall/delete the `glasnosticd` deployment:
 ```sh
 helm delete glasnosticd
 ```
-
-## Acknowledgements
-
-The following people have contributed to Glasnostic Helm Charts:
-
-- Maurice Faber (RedKubes)

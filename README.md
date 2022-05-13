@@ -12,7 +12,7 @@ Glasnostic Platform Helm Charts on a [Kubernetes](https://kubernetes.io) cluster
 
 ## Charts
 
-- [glasnosticd](https://github.com/glasnostic/helm-charts/tree/main/stable/glasnosticd): Glasnostic Kubernets Data Plane Helm chart
+- [glasnosticd](https://github.com/glasnostic/helm-charts/tree/main/charts/glasnosticd): Glasnostic Kubernets Data Plane Helm chart
 
 ## Prerequisites
 
