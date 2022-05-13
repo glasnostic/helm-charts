@@ -1,4 +1,4 @@
-# Default values for glasnostic.
+# Default values for Glasnostic Kubernetes Data Plane.
 # This is a YAML-formatted file.
 
 # Glasnostic Network ID - The network ID of the network to use for the dataplane.

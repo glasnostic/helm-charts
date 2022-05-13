@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: v1.12.1
-description: Glasnostic Kubernetes Dataplane
+appVersion: 1.12.1
+description: Glasnostic Kubernetes Data Plane
 type: application
-version: 0.2.3
-home: https://github.com/glasnostic/helm-charts
+version: 0.2.5
+home: https://glasnostic.github.io/helm-charts
 icon: https://raw.githubusercontent.com/glasnostic/helm-charts/master/docs/logo/glasnostic.png
 keywords:
 - glasnostic
@@ -15,3 +15,4 @@ maintainers:
 name: glasnosticd
 sources:
 - https://github.com/glasnostic/helm-charts
+kubeVersion: ">=1.16.0-0"
