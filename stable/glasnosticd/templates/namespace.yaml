@@ -1,7 +1,0 @@
-#Create namespace via Helm to ensure injector does not interfere with the glasnosticd containers
-#apiVersion: v1
-#kind: Namespace
-#metadata:
-#  name: {{ .Release.Namespace }}
-#  labels:
-#    glasnostic: disable

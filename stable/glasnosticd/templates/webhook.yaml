@@ -1,4 +1,17 @@
 {{ $tls := fromYaml ( include "glasnosticd.gen-certs" . ) }}
+{{- if not .Values.certManager.enabled }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: injection-secret
+  namespace: {{ .Release.Namespace }}
+type: kubernetes.io/tls
+data:
+  tls.crt: {{ $tls.clientCert }}
+  tls.key: {{ $tls.clientKey }}
+---
+{{- end }}
+
 {{- if .Capabilities.APIVersions.Has "admissionregistration.k8s.io/v1" }}
 apiVersion: admissionregistration.k8s.io/v1
 {{- else }}
@@ -18,8 +31,8 @@ webhooks:
   namespaceSelector:
     matchExpressions:
     - key: glasnostic
-      operator: NotIn
-      values: [ "disable" ]
+      operator: In
+      values: [ "enable" ]
   sideEffects: None
   clientConfig:
     {{- if not .Values.certManager.enabled }}
@@ -44,15 +57,3 @@ webhooks:
   admissionReviewVersions:
   - v1
   - v1beta1
-{{- if not .Values.certManager.enabled }}
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: injection-secret
-  namespace: {{ .Release.Namespace }}
-type: kubernetes.io/tls
-data:
-  tls.crt: {{ $tls.clientCert }}
-  tls.key: {{ $tls.clientKey }}
-{{- end }}
