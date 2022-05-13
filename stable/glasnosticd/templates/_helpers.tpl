@@ -51,13 +51,24 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Create the name of the service account to use
+*/}}
+{{- define "glasnosticd.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "glasnosticd.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
+
+{{/*
 Generate certificates for webhook
 */}}
 {{- define "glasnosticd.gen-certs" -}}
 {{- $fullName := ( include "glasnosticd.fullname" . ) -}}
 {{- $altNames := list ( printf "%s.%s" $fullName .Values.namespace ) ( printf "%s.%s.svc" $fullName .Values.namespace ) -}}
 {{- $ca := genCA "glasnostic-ca" 3650 -}}
-{{- $cert := genSignedCert ( include "glasnosticd.fullname" . ) nil $altNames 3650 $ca -}}
+{{- $cert := genSignedCert $fullName nil $altNames 3650 $ca -}}
 caCert: {{ $ca.Cert | b64enc }}
 clientCert: {{ $cert.Cert | b64enc }}
 clientKey: {{ $cert.Key | b64enc }}
