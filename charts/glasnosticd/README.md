@@ -1,6 +1,4 @@
-![Glasnostic logo](https://avatars.githubusercontent.com/u/6260715?s=200&v=4)
-
-# Glasnostic Helm Charts
+# Glasnostic Kubernetes Data Plan Helm Chart
 
 [![License][license-img]][license]
 
@@ -9,10 +7,6 @@
 
 Glasnostic Platform Helm Charts on a [Kubernetes](https://kubernetes.io) cluster using the
 [Helm](https://helm.sh) package manager.
-
-## Charts
-
-- [glasnosticd](https://github.com/glasnostic/helm-charts/tree/main/stable/glasnosticd): Glasnostic Kubernets Data Plane Helm chart
 
 ## Prerequisites
 
