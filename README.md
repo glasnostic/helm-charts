@@ -1,6 +1,6 @@
 ![Glasnostic logo](https://avatars.githubusercontent.com/u/6260715?s=200&v=4)
 
-# Glasnostic Charts
+# Glasnostic Kubernetes Data Plan Helm Charts
 
 [![License][license-img]][license]
 
