@@ -1,18 +1,16 @@
-apiVersion: v1
+apiVersion: v2
+name: glasnosticd
+version: 0.3.3
 appVersion: 1.12.1
 description: Glasnostic Kubernetes Data Plane
 type: application
-version: 0.3.2
 home: https://glasnostic.github.io/helm-charts
 icon: https://raw.githubusercontent.com/glasnostic/helm-charts/master/docs/logo/glasnostic.png
 keywords:
 - glasnostic
-- kubernetes
-- helm
 maintainers:
 - email: christoph@glasnostic.com
   name: ckassen
-name: glasnosticd
 sources:
 - https://github.com/glasnostic/helm-charts
 kubeVersion: ">=1.16.0-0"
