@@ -5,7 +5,7 @@ appVersion: 1.12.1
 description: Glasnostic Kubernetes Data Plane
 type: application
 home: https://glasnostic.github.io/helm-charts
-icon: https://raw.githubusercontent.com/glasnostic/helm-charts/master/docs/logo/glasnostic.png
+icon: https://avatars.githubusercontent.com/u/6260715?s=200&v=4
 keywords:
 - glasnostic
 maintainers:
