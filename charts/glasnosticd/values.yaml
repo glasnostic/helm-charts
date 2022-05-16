@@ -12,13 +12,13 @@ image:
   repository: public.ecr.aws/glasnostic/glasnosticd
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.12.1"
+  tag: ""
 
 sidecar:
   repository: public.ecr.aws/glasnostic/sidecar
   # TODO: Christoph: remove next line if not used:
   pullPolicy: IfNotPresent
-  tag: "v1.12.1"
+  tag: ""
 
 certManager:
   # Use cert manager for webhook certs?

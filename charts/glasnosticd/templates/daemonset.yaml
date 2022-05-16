@@ -36,7 +36,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef:
@@ -51,7 +51,7 @@ spec:
             - name: INJECT_KEY_PATH
               value: "/etc/glasnostic/tls.key"
             - name: SIDECAR_IMAGE
-              value: "{{ .Values.sidecar.repository }}:{{ .Values.sidecar.tag }}"
+              value: "{{ .Values.sidecar.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
             - name: NODE_PORT
               value: {{ .Values.nodePort | quote }}
             - name: NODE_IP
