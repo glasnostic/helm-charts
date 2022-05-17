@@ -1,6 +1,6 @@
-{{- if .Values.deploymentMode.daemonset -}}
+{{- if not .Values.deploymentMode.daemonset -}}
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: {{ include "glasnosticd.fullname" . }}
   labels:
@@ -20,6 +20,7 @@ spec:
       labels:
         {{- include "glasnosticd.selectorLabels" . | nindent 8 }}
     spec:
+      replicas: 1 # Needs to be fixed for now.
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -28,49 +29,54 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-        - name: injection-secret
-          secret:
-            secretName: injection-secret
-            optional: false
+      - name: injection-secret
+        secret:
+          secretName: injection-secret
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          envFrom:
-            - configMapRef:
-                name: {{ include "glasnosticd.fullname" . }}-config
-          env:
-            - name: NODE_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.nodeName
-            - name: INJECT_CERT_PATH
-              value: "/etc/glasnostic/tls.crt"
-            - name: INJECT_KEY_PATH
-              value: "/etc/glasnostic/tls.key"
-            - name: SIDECAR_IMAGE
-              value: "{{ .Values.sidecar.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
-            - name: NODE_PORT
-              value: {{ .Values.nodePort | quote }}
-            - name: NODE_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-          ports:
-            - name: exchange
-              containerPort: 40753
-              hostPort: {{ .Values.nodePort }}
-            - name: service-port
-              containerPort: 9091
-              hostPort: 9091
+        volumeMounts:
+        - mountPath: "/etc/glasnostic"
+          name: injection-secret
+          readOnly: true
+        envFrom:
+          - configMapRef:
+              name: {{ include "glasnosticd.fullname" . }}-config
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: INJECT_CERT_PATH
+          value: "/etc/glasnostic/tls.crt"
+        - name: INJECT_KEY_PATH
+          value: "/etc/glasnostic/tls.key"
+        - name: SIDECAR_IMAGE
+          value: "{{ .Values.sidecar.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
+        - name: NODE_PORT
+          value: {{ .Values.nodePort | quote }}
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: GLASNOSTICD_AS_DEPLOYMENT
+          value: "true"
+        resources:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-            - mountPath: "/etc/glasnostic"
-              name: injection-secret
-              readOnly: true
+        ports:
+        - name: exchange
+          containerPort: 40753
+          hostPort: {{ .Values.nodePort }}
+        - name: service-port
+          containerPort: 9091
       nodeSelector:
         {{- toYaml .Values.nodeSelector | nindent 8 }}
       affinity:
