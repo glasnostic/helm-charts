@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: {{ include "glasnosticd.fullname" . }}
-  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "glasnosticd.labels" . | nindent 4 }}
 spec:
