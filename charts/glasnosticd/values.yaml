@@ -8,6 +8,12 @@ networkKey: ""
 # NodePort that Glasnostic will use. Change only when port is already in use.
 nodePort: 40753
 
+# DaemonSet is the default and strongly recommended deployment mode for production use.
+# Set daemonset: false to use a Deployment instead. This is only recommended for development and
+# resource constrained clusters.
+deploymentMode:
+  daemonset: true
+
 image:
   repository: public.ecr.aws/glasnostic/glasnosticd
   pullPolicy: IfNotPresent
