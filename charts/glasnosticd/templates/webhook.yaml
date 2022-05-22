@@ -4,6 +4,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: injection-secret
+  namespace: {{ .Release.Namespace }}
 type: kubernetes.io/tls
 data:
   tls.crt: {{ $tls.clientCert }}
@@ -19,6 +20,7 @@ apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingWebhookConfiguration
 metadata:
   name: glasnostic-sidecar-injector
+  namespace: {{ .Release.Namespace }}
   {{- if .Values.certManager.enabled }}
   annotations:
     certmanager.k8s.io/inject-ca-from: {{ printf "%s/%s-admission" .Release.Namespace (include "glasnosticd.fullname" .) | quote }}
@@ -35,10 +37,12 @@ webhooks:
   clientConfig:
     {{- if not .Values.certManager.enabled }}
     caBundle: {{ $tls.caCert }}
+    {{- else if .Values.certManager.caCert }}
+    caBundle: {{ .Values.certManager.caCert }}
     {{- end }}
     service:
       namespace: {{ .Release.Namespace }}
-      name: glasnosticd
+      name: {{ include "glasnosticd.fullname" . }}
       path: /inject
   failurePolicy: Fail
   rules:
