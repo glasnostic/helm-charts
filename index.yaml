@@ -1,6 +1,26 @@
 apiVersion: v1
 entries:
   glasnosticd:
+  - apiVersion: v1
+    appVersion: 1.12.1
+    created: "2022-06-14T19:03:14.39105612Z"
+    description: Glasnostic Kubernetes Data Plane
+    digest: c2d37abf40240dd489f87bd31db1a39fec04551ebc3815bfdcd51c3022274e4c
+    home: https://glasnostic.github.io/helm-charts
+    icon: https://avatars.githubusercontent.com/u/6260715?s=200&v=4
+    keywords:
+    - glasnostic
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: christoph@glasnostic.com
+      name: ckassen
+    name: glasnosticd
+    sources:
+    - https://github.com/glasnostic/helm-charts
+    type: application
+    urls:
+    - https://github.com/glasnostic/helm-charts/releases/download/glasnosticd-0.5.0/glasnosticd-0.5.0.tgz
+    version: 0.5.0
   - apiVersion: v2
     appVersion: 1.12.1
     created: "2022-05-17T15:52:28.234957131Z"
@@ -169,4 +189,4 @@ entries:
     urls:
     - https://github.com/glasnostic/helm-charts/releases/download/glasnosticd-0.2.5/glasnosticd-0.2.5.tgz
     version: 0.2.5
-generated: "2022-05-17T15:52:28.234986432Z"
+generated: "2022-06-14T19:03:14.391111921Z"
