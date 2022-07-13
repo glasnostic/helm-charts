@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 name: glasnosticd
 version: 0.5.1
 appVersion: 1.12.2
